@@ -1,0 +1,140 @@
+﻿Scénář prezentace: Projekt Panther – Stavba lokálního AI clusteru
+Tento dokument slouží jako podrobný podklad pro tvorbu prezentace o projektu Panther. Každá sekce odpovídá jednomu snímku (slidu) a obsahuje vizuální návrh, klíčové body a poznámky pro řečníka.
+
+
+________________
+
+
+1. Panther: Cesta k vlastnímu lokálnímu AI clusteru
+Vizuální návrh: Fotografie sestaveného PC (Fractal Design Torrent). Klíčové body:
+
+
+* Od vize přes hardwarové limity až k 861 tok/s.
+* Motivace: Nezávislost, soukromí a kontrola. Poznámky pro řečníka: Dobrý den všem. Dnes vám představím projekt Panther. Není to jen o tom, že jsem si postavil drahé PC. Je to o cestě od pouhého konzumenta AI k architektovi vlastní infrastruktury, která mi dává svobodu, o jaké se v cloudu může jen zdát.
+
+
+________________
+
+
+2. Proč vlastní cluster? (Vize vs. konzum)
+Vizuální návrh: Kontrastní ikony (Mrak vs. Domácí server). Klíčové body:
+
+
+* Hands-on experience: Pochopení architektury LLM v praxi.
+* Ekonomika: Předpoklad zdražování a omezení dostupnosti cloudových API.
+* Kritická infrastruktura: Nedostatek napájení v datacentrech – lokální AI jako nutnost.
+* Zvídavost: Touha poznat, co se děje pod pokličkou. Poznámky pro řečníka: Proč do toho jít? Nechci být jen uživatelem, chci tomu rozumět. Věřím, že cloudová AI budou brzy velmi drahá a hůře dostupná kvůli energetickým limitům. Pokud chcete mít AI k dispozici 24/7 bez ohledu na politiku OpenAI nebo Anthropic, musíte mít vlastní železo.
+
+
+________________
+
+
+3. Plán a sbírání dat: Hardware jako investice
+Vizuální návrh: Tabulka komponent s logy Qwen a Gemma. Klíčové body:
+
+
+* Focus: Open-weights modely (zejména rodina Qwen).
+* Volba GPU: Proč padla NVIDIA (nedostupnost/cena) a Mac Studio (uzavřenost).
+* Finální sestava: Ryzen 9, 2x Radeon R9700 AI Pro (64 GB VRAM), 192 GB DDR5 RAM. Poznámky pro řečníka: Výběr byl pragmatický. NVIDIA je aktuálně cenově mimo pro jednotlivce. Mac Studio je sice skvělé, ale je to "černá skříňka" bez možnosti upgradu. Zvolil jsem cestu vlastního PC s Radeony. Těch 192 GB RAM vypadalo jako overkill, ale pro TMPFS a multitasking je to naprostý game-changer.
+
+
+________________
+
+
+4. Logistika a stavba (The "Baby" Moment)
+Vizuální návrh: Fotka krabic s hardwarem po převozu. Klíčové body:
+
+
+* Nákup v hodnotě 150 000 CZK.
+* Transport Prahou v koloně – "jízda s dítětem".
+* Stavba po letech: Manuály, pečlivost a konzultace s AI.
+* Komponenty: Fractal Torrent (airflow) + Dark Rock Pro (ticho). Poznámky pro řečníka: Když vezete hardware za 150 tisíc z Holešovic na Pankrác, jedete v koloně velmi opatrně. Samotná stavba po letech byla výzva – potil jsem se, abych nic nepokazil, a Gemini mi dělala virtuálního asistenta u manuálu k základní desce.
+
+
+________________
+
+
+5. Porodní bolesti: Lessons Learned
+Vizuální návrh: Screenshoty chybových hlášení nebo terminálu. Klíčové body:
+
+
+* Kernel Hell: Ubuntu 24.04 LTS neznalo HW (nefunkční síť) -> upgrade na 25.10.
+* vLLM náraz: Chybějící podpora pro RDNA 4 (optimalizace pro enterprise CUDA).
+* Hardwarový fail: Špatný zdroj způsoboval podtaktování GPU. Poznámky pro řečníka: Nebyl to hladký start. Ubuntu 24.04 nemělo ovladače pro mou síťovku, musel jsem na 25.10. Pak přišlo zklamání s vLLM, které na mém HW neběželo. A největší lekce? Špatně zvolený zdroj. Musel jsem to celé rozebrat a vyměnit ho, aby grafiky dostaly stabilitu, kterou potřebují.
+
+
+________________
+
+
+6. Stavíme finální stack: Llama.cpp
+Vizuální návrh: Logo llama.cpp a repozitáře Panther-Minor. Klíčové body:
+
+
+* Native Build: Build přímo v ROCm dev image pro RDNA 4.
+* Panther-Minor: Vlastní správa infrastruktury v Gitu.
+* Modely: Vítězství Unsloth Dynamic Q4_K_XL kvantizace.
+* Rychlost: Qwen 3 30B v 8bit kvantizaci sází 70 tok/s. Poznámky pro řečníka: Ollamu jsem nechal za sebou a přešel na llama.cpp. Postavil jsem si nativní build přímo pro svou architekturu. Veškerou konfiguraci držím v repu Panther-Minor. Objevil jsem svět kvantizací a zjistil, že Unsloth modely jsou aktuálně absolutní špička v poměru přesnost/paměť.
+
+
+________________
+
+
+7. Stabilizace: Power & VRAM Management
+Vizuální návrh: Schéma activity-aware proxy a parametry GRUBu. Klíčové body:
+
+
+* Kernel Tuning: Oprava power managementu přes GRUB.
+* VRAM Orchestrace: Vlastní proxy pro auto-unload modelů.
+* Ochrana KV Cache: Přepnutí do Single-Tenant režimu (--parallel 1). Poznámky pro řečníka: Musel jsem ladit kernel, aby karty v idle nezlobily. Také jsem si napsal vlastní proxy, která inteligentně uvolňuje modely z paměti, aby karty zbytečně nehřály, když se nic neděje. Klíčem k rychlosti prefillu bylo ale vynucení jednoho slotu v llama serveru.
+
+
+________________
+
+
+8. Benchmarky (The 861 tok/s Flex)
+Vizuální návrh: Grafana Dashboard (Živá ukázka). Klíčové body:
+
+
+* MoE modely: Prefill 5k tok/s, Output 60 tok/s.
+* Gemma 4 31B Dense: Prefill 861 tok/s a output 20 tok/s.
+* Tuning: Optimalizace n-batch 4096 a n-ubatch 1024. Poznámky pro řečníka: Tady vidíte reálná čísla. Díky optimalizaci batchingu jsem dosáhl fyzického limitu PCIe sběrnice a paměti karet. 861 tokenů za sekundu u 31B modelu je na domácí setup naprostý nesmysl, ale je to realita.
+
+
+________________
+
+
+9. Co od toho nečekat?
+Vizuální návrh: Srovnávací tabulka "Očekávání vs. Realita". Klíčové body:
+
+
+* Není to "bezedný" Claude s 200k kontextem.
+* Nutnost agilního přístupu: Plan-Confirm-Implement.
+* Dělení tasků do menších celků a čištění kontextu. Poznámky pro řečníka: Buďme upřímní – nemůžete do toho sypat historii jako do Clouda. Chce to změnit workflow. Musíte pracovat agilně, po menších kouscích. Ale víte co? Tahle disciplína paradoxně vede k mnohem přesnějším výsledkům i u největších modelů v cloudu.
+
+
+________________
+
+
+10. Přidaná hodnota (Multitasking)
+Vizuální návrh: Screenshot procesu buildění Rustu vedle inferencí. Klíčové body:
+
+
+* TMPFS: Využití 192 GB RAM pro bleskové I/O operace.
+* Multitasking: Paralelní inference + build velkého Rust monorepa (6-8 min).
+* Soukromí: AI i běhové prostředí agentů (OpenCode/OpenFang) na jednom místě. Poznámky pro řečníka: Moje mašina není jen o chatu. Zatímco grafiky počítají kód pro agenta, procesor buildí monorepo v Rustu. Díky obrovské RAM mám všechna dočasná data v paměti. Je to uzavřený, bezpečný a extrémně rychlý ekosystém.
+
+
+________________
+
+
+11. Budoucnost: Kam dál?
+Vizuální návrh: Časová osa s budoucími technologiemi (vLLM, TurboQuant). Klíčové body:
+
+
+* Nativní podpora RDNA 4 ve vLLM.
+* TurboQuant a APEX quants.
+* ROI a měření návratnosti v reálné produkci.
+* Inspirace: Komunita a lokální guruové (Mitko Vasilev). Poznámky pro řečníka: Jsme na začátku. Čekám na vLLM podporu, těším se na TurboQuant. Budu dál sbírat data a měřit, jak moc mi tahle investice šetří čas a peníze. Lokální AI je trend, který teprve začíná, a já jsem rád, že jsem do toho vlaku naskočil včas.
+
+
+________________
