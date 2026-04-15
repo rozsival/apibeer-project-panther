@@ -139,7 +139,7 @@ transition: slide-left
 
 </div>
 
-<div class="flex justify-center items-start -mt-8 w-full">
+<div class="flex justify-center items-start -mt-8 w-full" v-motion :initial="{ scale: 0.9, opacity: 0, y: 50 }" :enter="{ scale: 1, opacity: 1, y: 0, transition: { delay: 300, duration: 800, type: 'spring', stiffness: 250 } }">
   <img src="/panther-interior.jpg" class="rounded-xl shadow-2xl w-full h-[360px] object-cover border-4 border-gray-800" alt="Panther Interior" />
 </div>
 
@@ -261,7 +261,18 @@ class: text-center
 
 # Benchmarky 🚀
 
-<div class="text-2xl text-purple-400 mb-12">(The 861 tok/s Flex)</div>
+<div class="flex justify-between items-end mb-8 w-full max-w-4xl mx-auto">
+  <div class="text-2xl text-purple-400">(The 861 tok/s Flex)</div>
+  
+  <div class="bg-red-900/30 text-red-500 border border-red-500/50 rounded-xl px-5 py-2 flex items-center gap-3 shadow-[0_0_20px_rgba(220,38,38,0.3)] backdrop-blur-md relative overflow-hidden">
+    <div class="relative flex items-center gap-3">
+      <div class="w-3 h-3 bg-red-500 rounded-full relative shadow-[0_0_8px_rgba(239,68,68,1)]">
+        <div class="absolute inset-0 rounded-full border border-red-500 animate-ping"></div>
+      </div>
+      <span class="font-bold tracking-wider uppercase text-sm">Live Grafana Demo</span>
+    </div>
+  </div>
+</div>
 
 <div class="bg-gray-900/80 rounded-xl p-8 border border-gray-700 shadow-[0_0_50px_rgba(168,85,247,0.1)] inline-block w-full max-w-4xl">
 
@@ -434,14 +445,21 @@ class: text-center
 
 <div class="text-2xl mt-4 text-gray-400">Máte otázky?</div>
 
-<div class="mt-12 flex flex-col items-center gap-6">
+<div class="mt-8 flex flex-col items-center gap-6">
 
-  <a href="https://github.com/rozsival/panther-minor" target="_blank" class="bg-gray-800/80 hover:bg-gray-700/80 transition-colors flex items-center gap-3 px-6 py-3 rounded-xl border border-gray-700 shadow-lg cursor-pointer hover:scale-105">
-    <carbon:logo-github class="text-2xl text-white" />
-    <span class="font-mono text-gray-200">github.com/rozsival/panther-minor</span>
+  <a href="https://github.com/rozsival/panther-minor" target="_blank" class="block w-fit group no-underline">
+    <div class="bg-gray-800/80 group-hover:bg-gray-700/80 transition-all flex flex-col items-center gap-4 px-8 py-6 rounded-2xl border border-gray-700 shadow-xl group-hover:border-blue-500/50 group-hover:scale-105 duration-300">
+      <div class="bg-white p-2 rounded-xl shadow-inner border border-gray-200 inline-block pointer-events-none">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://github.com/rozsival/panther-minor" alt="QR Code Panther-Minor" class="w-[140px] h-[140px] rounded-sm m-0" />
+      </div>
+      <div class="flex items-center gap-3 mt-2">
+        <carbon:logo-github class="text-2xl text-white" />
+        <span class="font-mono text-gray-200 group-hover:text-white transition-colors">github.com/rozsival/panther-minor</span>
+      </div>
+    </div>
   </a>
 
-  <div class="bg-gray-800/50 flex justify-center items-center gap-8 px-8 py-4 rounded-full border border-gray-700 max-w-fit mx-auto mt-4">
+  <div class="bg-gray-800/50 flex justify-center items-center gap-8 px-6 py-3 rounded-full border border-gray-700 max-w-fit mx-auto mt-2">
     <div class="flex items-center gap-2">
       <carbon:logo-github class="text-3xl hover:text-white transition-colors" />
       <span class="text-xl font-mono text-gray-300">@rozsival</span>
