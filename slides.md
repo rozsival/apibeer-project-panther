@@ -1,7 +1,7 @@
 ---
 theme: default
 colorSchema: dark
-background: https://images.unsplash.com/photo-1620825937374-87fc7d62828e?q=80&w=2938&auto=format&fit=crop # Abstraktní technické pozadí
+background: /panther-radeon.png
 title: "Projekt Panther – Lokální AI cluster"
 info: |
   ## Projekt Panther
@@ -14,18 +14,30 @@ fonts:
   mono: "Fira Code"
 ---
 
+<style>
+.slidev-layout {
+  background: linear-gradient(135deg, #1f1025 0%, #0e0c14 45%, #050505 100%);
+}
+</style>
+
+<div class="bg-black/70 p-12 rounded-3xl border border-red-500/30 backdrop-blur-md shadow-[0_0_50px_rgba(0,0,0,0.8)] inline-block mt-16 max-w-fit mx-auto">
+
 # Projekt Panther 🐆
 
-<br/>
+<div class="mt-6 mb-6 h-px w-32 bg-gradient-to-r from-transparent via-red-500 to-transparent mx-auto"></div>
 
 ## Cesta k vlastnímu lokálnímu AI clusteru
 
-<div class="mt-4 text-xl font-light op-80 text-blue-300">
+<div class="mt-4 text-xl font-light op-90 text-gray-300">
 Od vize přes hardwarové limity až k 861 tok/s.
 </div>
 
-<div class="abs-b m-6 left-0 right-0 text-center animate-pulse text-sm opacity-50">
-  Pokračujte mezerníkem <carbon:arrow-right />
+</div>
+
+<div class="abs-b m-6 left-0 right-0 text-center animate-pulse text-sm opacity-80">
+  <span class="bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm border border-white/10 shadow-lg">
+    Pokračujte mezerníkem <carbon:arrow-right class="inline" />
+  </span>
 </div>
 
 <!--
@@ -272,7 +284,7 @@ class: text-center
     <tr class="bg-purple-900/20 text-xl font-bold">
       <td class="p-4 text-purple-300">Gemma 4 Dense</td>
       <td class="p-4 text-purple-300">31B</td>
-      <td class="p-4 font-mono text-purple-400">~860 🤯</td>
+      <td class="p-4 font-mono text-purple-400">~861 🤯</td>
       <td class="p-4 font-mono text-purple-400">~20</td>
     </tr>
   </tbody>
