@@ -269,7 +269,7 @@ class: text-center
       <div class="w-3 h-3 bg-red-500 rounded-full relative shadow-[0_0_8px_rgba(239,68,68,1)]">
         <div class="absolute inset-0 rounded-full border border-red-500 animate-ping"></div>
       </div>
-      <span class="font-bold tracking-wider uppercase text-sm">Live Grafana Demo</span>
+      <span class="font-bold tracking-wider uppercase text-sm">Live Demo</span>
     </div>
   </div>
 </div>
