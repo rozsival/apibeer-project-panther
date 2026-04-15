@@ -29,7 +29,7 @@ fonts:
 ## Cesta k vlastnímu lokálnímu AI clusteru
 
 <div class="mt-4 text-xl font-light op-90 text-gray-300">
-Od vize přes hardwarové limity až k agentní AI
+Od vize přes hardwarové limity až k agentic AI
 </div>
 
 </div>
