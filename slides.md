@@ -35,8 +35,8 @@ Od vize přes hardwarové limity až k 861 tok/s.
 </div>
 
 <div class="abs-b m-6 left-0 right-0 text-center animate-pulse text-sm opacity-80">
-  <span class="bg-black/50 px-4 py-2 rounded-full backdrop-blur-sm border border-white/10 shadow-lg">
-    Pokračujte mezerníkem <carbon:arrow-right class="inline" />
+  <span class="bg-black/50 px-5 py-2.5 rounded-full backdrop-blur-sm border border-red-500/30 shadow-[0_0_15px_rgba(220,38,38,0.3)] text-red-100 font-bold tracking-wider">
+    🚀 STARTUJEME <carbon:arrow-right class="inline ml-1" />
   </span>
 </div>
 
@@ -98,18 +98,18 @@ image: /panther-exterior.jpg
 <div class="grid grid-cols-3 gap-4 mt-2">
 
 <div class="bg-gray-800/50 p-4 rounded-lg border-t-4 border-blue-500">
-  <div class="text-sm text-blue-400">Procesor</div>
-  <div class="font-bold text-sm">AMD Ryzen 9</div>
+  <div class="text-sm text-blue-400">CPU</div>
+  <div class="font-bold text-sm">Ryzen 9</div>
 </div>
 
 <div class="bg-gray-800/50 p-4 rounded-lg border-t-4 border-red-500">
-  <div class="text-sm text-red-400">Grafické karty</div>
+  <div class="text-sm text-red-400">GPU</div>
   <div class="font-bold text-sm">2x Radeon R9700 AI Pro (64GB VRAM)</div>
 </div>
 
 <div class="bg-gray-800/50 p-4 rounded-lg border-t-4 border-green-500">
-  <div class="text-sm text-green-400">Operační paměť</div>
-  <div class="font-bold text-sm">192 GB DDR5 RAM</div>
+  <div class="text-sm text-green-400">RAM</div>
+  <div class="font-bold text-sm">192 GB DDR5</div>
 </div>
 
 </div>
@@ -447,7 +447,7 @@ class: text-center
 
 <div class="mt-8 flex flex-col items-center gap-6">
 
-  <a href="https://github.com/rozsival/panther-minor" target="_blank" class="block w-fit group no-underline">
+  <a href="https://github.com/rozsival/panther-minor" target="_blank" class="block w-fit group no-underline !border-none !border-b-0 hover:!border-none">
     <div class="bg-gray-800/80 group-hover:bg-gray-700/80 transition-all flex flex-col items-center gap-4 px-8 py-6 rounded-2xl border border-gray-700 shadow-xl group-hover:border-blue-500/50 group-hover:scale-105 duration-300">
       <div class="bg-white p-2 rounded-xl shadow-inner border border-gray-200 inline-block pointer-events-none">
         <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://github.com/rozsival/panther-minor" alt="QR Code Panther-Minor" class="w-[140px] h-[140px] rounded-sm m-0" />
