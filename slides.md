@@ -29,7 +29,7 @@ fonts:
 ## Cesta k vlastnímu lokálnímu AI clusteru
 
 <div class="mt-4 text-xl font-light op-90 text-gray-300">
-Od vize přes hardwarové limity až k 861 tok/s.
+Od vize přes hardwarové limity až k agentní AI
 </div>
 
 </div>
@@ -262,7 +262,7 @@ class: text-center
 # Benchmarky 🚀
 
 <div class="flex justify-between items-end mb-8 w-full max-w-4xl mx-auto">
-  <div class="text-2xl text-purple-400">(The 861 tok/s Flex)</div>
+  <div class="text-2xl text-purple-400">(The tok/s Flex)</div>
   
   <div class="bg-red-900/30 text-red-500 border border-red-500/50 rounded-xl px-5 py-2 flex items-center gap-3 shadow-[0_0_20px_rgba(220,38,38,0.3)] backdrop-blur-md relative overflow-hidden">
     <div class="relative flex items-center gap-3">
@@ -289,14 +289,14 @@ class: text-center
     <tr class="border-b border-gray-800/50">
       <td class="p-4">Různé MoE</td>
       <td class="p-4 text-gray-500">do 30B</td>
-      <td class="p-4 font-mono text-blue-400">~3000-5000</td>
+      <td class="p-4 font-mono text-blue-400">~2500-4500</td>
       <td class="p-4 font-mono">~50-70</td>
     </tr>
     <tr class="bg-purple-900/20 text-xl font-bold">
       <td class="p-4 text-purple-300">Gemma 4 Dense</td>
       <td class="p-4 text-purple-300">31B</td>
-      <td class="p-4 font-mono text-purple-400">~861 🤯</td>
-      <td class="p-4 font-mono text-purple-400">~20</td>
+      <td class="p-4 font-mono text-purple-400">~600-900 🤯</td>
+      <td class="p-4 font-mono text-purple-400">~18-23</td>
     </tr>
   </tbody>
 </table>
@@ -308,7 +308,7 @@ class: text-center
 </div>
 
 <!--
-Tady vidíte reálná čísla. Díky optimalizaci batchingu jsem dosáhl fyzického limitu PCIe sběrnice a paměti karet. 861 tokenů za sekundu u 31B modelu je na domácí setup naprostý nesmysl, ale je to realita.
+Tady vidíte reálná čísla. Díky optimalizaci batchingu jsem dosáhl fyzického limitu PCIe sběrnice a paměti karet. Prefill přes 900 tokenů za sekundu u 31B dense modelu je na domácí setup naprostý nesmysl, ale je to realita.
 -->
 
 ---
